@@ -1,0 +1,40 @@
+﻿<Window x:Class="AddressMatchTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AddressMatchTool"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="625">
+    <Window.Resources>
+        <local:MappingViewModel x:Key="mappingViewObj" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <TextBox Width="120" Height="30" Margin="10" Name="txtCustname" Text="{Binding Customer.Name, Source={StaticResource mappingViewObj}}"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <TextBox Width="120" Height="30" Margin="10" Name="txtAddrLine1" Text="{Binding Customer.Address.AddressLine1, Source={StaticResource mappingViewObj}}"></TextBox>
+                <TextBox Width="120" Height="30" Margin="10" Name="txtAddrLine2" Text="{Binding Customer.Address.AddressLine2, Source={StaticResource mappingViewObj}}"></TextBox>
+                <TextBox Width="120" Height="30" Margin="10" Name="txtAddrCity" Text="{Binding Customer.Address.City, Source={StaticResource mappingViewObj}}"></TextBox>
+                <TextBox Width="120" Height="30" Margin="10" Name="txtAddrState" Text="{Binding Customer.Address.State, Source={StaticResource mappingViewObj}}"></TextBox>
+                <TextBox Width="120" Height="30" Margin="10" Name="txtAddrZipCode" Text="{Binding Customer.Address.ZipCode, Source={StaticResource mappingViewObj}}"></TextBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="2">
+            <StackPanel HorizontalAlignment="Left" Margin="10">
+                <Button Width="80" Height="30" Command="{Binding getCustomersBtnClick, Mode=OneWay, Source={StaticResource mappingViewObj}}">Get</Button>
+                <Button Width="80" Height="30" Command="{Binding saveCustomersBtnClick, Mode=OneWay, Source={StaticResource mappingViewObj}}">Save</Button>
+                <Button Width="80" Height="30" Command="{Binding newCustomerBtnClick, Mode=OneWay, Source={StaticResource mappingViewObj}}">New</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
